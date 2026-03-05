@@ -1,6 +1,6 @@
 ---
 title: "K'IN Gathering: Kaban Awakening"
-description: `K'IN Gathering returns with a new edition inspired by the Mayan Kin "Kaban", a symbol of movement, synchonicity, the heartbeat of the Earth, and the awakening of consciousness.`
+description: "K'IN Gathering returns with a new edition inspired by the Mayan Kin 'Kaban', a symbol of movement, synchonicity, the heartbeat of the Earth, and the awakening of consciousness."
 image: '/favicon.svg'
 tags: ['3 Days', 'Open Air', 'Music & Art', 'Ceremony', 'Nature']
 featured: true
