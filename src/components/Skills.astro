@@ -146,12 +146,46 @@ const featuredProjects = allProjects.filter(p => p.data.featured);
     color: var(--color-accent-purple);
   }
 
+
+  .featured-section,
+  .other-projects {
+    margin-bottom: 4rem;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .featured-grid {
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  }
+
   @media (max-width: 768px) {
     .skills {
       padding: 4rem 1.5rem;
     }
 
     .skills-grid {
+      grid-template-columns: 1fr;
+    }
+
+
+    .projects-page {
+      padding-top: calc(var(--nav-height) + 1rem);
+    }
+
+    .projects-grid,
+    .featured-grid {
       grid-template-columns: 1fr;
     }
   }
