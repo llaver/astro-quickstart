@@ -1,13 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../layouts/BaseLayout.astro';
-import ThreeBackground from '../components/ThreeBackground.astro';
-import Navigation from '../components/Navigation.astro';
-import ProjectCard from '../components/ProjectCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ThreeBackground from '../../components/ThreeBackground.astro';
+import Navigation from '../../components/Navigation.astro';
+import EventCard from '../../components/EventCard.astro';
 
-const allProjects = await getCollection('projects');
-const featuredProjects = allProjects.filter(p => p.data.featured);
-const otherProjects = allProjects.filter(p => !p.data.featured);
+const allEvents = await getCollection('events');
+const featuredEvents = allEvents.filter(e => e.data.featured);
+const otherEvents = allEvents.filter(e => !e.data.featured);
 ---
 
 <BaseLayout
@@ -17,27 +17,28 @@ const otherProjects = allProjects.filter(p => !p.data.featured);
   <ThreeBackground />
   <Navigation />
 
-  <main class="projects-page">
+  <main class="events-page">
     <div class="container">
-      <header class="projects-header">
+      <header class="events-header">
         <h1 class="page-title">Events</h1>
         <p class="page-subtitle">
           Upcoming and Past Dimensional Mayan Tribe Events
         </p>
       </header>
 
-      {featuredProjects.length > 0 && (
+      {featuredEvents.length > 0 && (
         <section class="featured-section">
           <h2 class="section-title">Upcoming Events</h2>
-          <div class="projects-grid featured-grid">
-            {featuredProjects.map((project) => (
-              <ProjectCard
-                title={project.data.title}
-                description={project.data.description}
-                image={project.data.image}
-                link={project.data.link}
-                github={project.data.github}
-                tags={project.data.tags}
+          <div class="events-grid featured-grid">
+            {featuredEvents.map((event) => (
+              <EventCard
+                title={event.data.title}
+                description={event.data.description}
+                image={event.data.image}
+                dates={event.data.dates}
+                links={event.data.links}
+                tags={event.data.tags}
+                slug={event.id}
                 featured={true}
               />
             ))}
@@ -45,18 +46,18 @@ const otherProjects = allProjects.filter(p => !p.data.featured);
         </section>
       )}
 
-      {otherProjects.length > 0 && (
-        <section class="other-projects">
+      {otherEvents.length > 0 && (
+        <section class="other-events">
           <h2 class="section-title">Previous Events</h2>
-          <div class="projects-grid">
-            {otherProjects.map((project) => (
-              <ProjectCard
-                title={project.data.title}
-                description={project.data.description}
-                image={project.data.image}
-                link={project.data.link}
-                github={project.data.github}
-                tags={project.data.tags}
+          <div class="events-grid">
+            {otherEvents.map((event) => (
+              <EventCard
+                title={event.data.title}
+                description={event.data.description}
+                image={event.data.image}
+                dates={event.data.dates}
+                links={event.data.links}
+                tags={event.data.tags}
               />
             ))}
           </div>
@@ -67,7 +68,7 @@ const otherProjects = allProjects.filter(p => !p.data.featured);
 </BaseLayout>
 
 <style>
-  .projects-page {
+  .events-page {
     min-height: 100vh;
     padding: calc(var(--nav-height) + 2rem) 2rem 5rem;
   }
@@ -77,7 +78,7 @@ const otherProjects = allProjects.filter(p => !p.data.featured);
     margin: 0 auto;
   }
 
-  .projects-header {
+  .events-header {
     text-align: center;
     margin-bottom: 3rem;
   }
@@ -98,8 +99,7 @@ const otherProjects = allProjects.filter(p => !p.data.featured);
   }
 
   .featured-section,
-  .other-projects {
-    margin-bottom: 4rem;
+  .other-events {
   }
 
   .section-title {
@@ -110,7 +110,7 @@ const otherProjects = allProjects.filter(p => !p.data.featured);
     color: var(--color-primary);
   }
 
-  .projects-grid {
+  .events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.5rem;
@@ -121,11 +121,11 @@ const otherProjects = allProjects.filter(p => !p.data.featured);
   }
 
   @media (max-width: 768px) {
-    .projects-page {
+    .events-page {
       padding-top: calc(var(--nav-height) + 1rem);
     }
 
-    .projects-grid,
+    .events-grid,
     .featured-grid {
       grid-template-columns: 1fr;
     }

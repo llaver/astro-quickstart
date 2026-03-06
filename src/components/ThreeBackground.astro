@@ -12,7 +12,7 @@
   let camera: THREE.PerspectiveCamera | null = null;
   let renderer: THREE.WebGLRenderer | null = null;
   let particlesMesh: THREE.Points<THREE.BufferGeometry, THREE.PointsMaterial> | null = null;
-  let torus: THREE.Mesh<THREE.TorusGeometry, THREE.MeshBasicMaterial> | null = null;
+  let torus: THREE.Mesh<THREE.TorusKnotGeometry, THREE.MeshBasicMaterial> | null = null;
   let torus2: THREE.Mesh<THREE.TorusGeometry, THREE.MeshBasicMaterial> | null = null;
   let animationId: number | null = null;
   let mouseX = 0;
@@ -44,15 +44,15 @@
     // シーン、カメラ、レンダラーの設定
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer = new THREE.WebGLRenderer({ canvas, alpha: false, antialias: true });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    camera.position.z = 5;
+    camera.position.z = 50;
 
     // パーティクルシステムの作成
     const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 5000;
+    const particlesCount = 1000;
     const posArray = new Float32Array(particlesCount * 3);
     const colorArray = new Float32Array(particlesCount * 3);
 
@@ -66,14 +66,14 @@
       const colorType = Math.random();
       if (colorType < 0.33) {
         // 紫
-        colorArray[i] = 0.66;
-        colorArray[i + 1] = 0.33;
-        colorArray[i + 2] = 0.97;
+        colorArray[i] = 0;
+        colorArray[i + 1] = 1;
+        colorArray[i + 2] = 0;
       } else if (colorType < 0.66) {
         // ピンク
-        colorArray[i] = 0.93;
-        colorArray[i + 1] = 0.28;
-        colorArray[i + 2] = 0.60;
+        colorArray[i] = 0.5;
+        colorArray[i + 1] = 0;
+        colorArray[i + 2] = 0.5;
       } else {
         // 青
         colorArray[i] = 0.23;
@@ -87,10 +87,10 @@
 
     // パーティクル用マテリアル
     const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.15,
+      size: 0.5,
       vertexColors: true,
       transparent: true,
-      opacity: 0.8,
+      opacity: 0.85,
       blending: THREE.AdditiveBlending,
     });
 
@@ -98,23 +98,24 @@
     scene.add(particlesMesh);
 
     // 回転するトーラス（ドーナツ型）の追加
-    const torusGeometry = new THREE.TorusGeometry(10, 3, 16, 100);
+    // const torusGeometry = new THREE.TorusGeometry(10, 3, 16, 100);
+    const torusGeometry = new THREE.TorusKnotGeometry( 30, 4, 500, 16, 5, 4 );
     const torusMaterial = new THREE.MeshBasicMaterial({
-      color: 0xa855f7,
+      color: 0x711FFF,
       wireframe: true,
       transparent: true,
-      opacity: 0.3,
+      opacity: 0.4,
     });
     torus = new THREE.Mesh(torusGeometry, torusMaterial);
     scene.add(torus);
 
     // 2つ目のトーラス
-    const torus2Geometry = new THREE.TorusGeometry(15, 2, 16, 100);
+    const torus2Geometry = new THREE.TorusGeometry(50, 10, 16, 100);
     const torus2Material = new THREE.MeshBasicMaterial({
-      color: 0xec4899,
+      color: 0x26FF1F,
       wireframe: true,
       transparent: true,
-      opacity: 0.2,
+      opacity: 0.3,
     });
     torus2 = new THREE.Mesh(torus2Geometry, torus2Material);
     torus2.rotation.x = Math.PI / 4;
@@ -141,17 +142,17 @@
     particlesMesh.rotation.x = Math.sin(time) * 0.1;
 
     // トーラスの回転
-    torus.rotation.x += 0.01;
-    torus.rotation.y += 0.005;
-    torus.rotation.z += 0.003;
+    torus.rotation.x += 0.001;
+    torus.rotation.y += 0.0005;
+    torus.rotation.z += 0.0003;
 
-    torus2.rotation.x += 0.005;
-    torus2.rotation.y += 0.01;
-    torus2.rotation.z += 0.002;
+    torus2.rotation.x += 0.0005;
+    torus2.rotation.y += 0.001;
+    torus2.rotation.z += 0.0002;
 
     // マウス追従
-    camera.position.x = mouseX * 2;
-    camera.position.y = mouseY * 2;
+    camera.position.x = mouseX * -1;
+    camera.position.y = mouseY * -1;
     camera.lookAt(scene.position);
 
     renderer.render(scene, camera);

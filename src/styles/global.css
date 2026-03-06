@@ -4,15 +4,15 @@
   --color-bg-dark: #0F172A;
   --color-bg-darker: #020617;
   --color-bg-card: #1E293B;
-  --color-primary: #3B82F6;
+  --color-primary: #4bf63b;
   --color-accent-purple: #8B5CF6;
   --color-accent-pink: #EC4899;
-  --color-accent-blue: #3B82F6;
+  --color-accent-blue: #8B5CF6;
   --color-accent-cyan: #06B6D4;
   --color-text: #F1F5F9;
   --color-text-dim: #94A3B8;
   --color-border: #334155;
-  --color-shadow: rgba(59, 130, 246, 0.3);
+  --color-shadow: rgba(75, 246, 59, 0.3);
 
   /* Typography */
   --font-heading: 'Space Grotesk', system-ui, sans-serif;
@@ -136,5 +136,5 @@ body::before {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: text-shimmer 3s linear infinite;
+  animation: text-shimmer 8s linear infinite;
 }

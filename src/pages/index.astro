@@ -50,7 +50,7 @@ const recentPosts = allBlogPosts
 
 <style>
   .recent-posts {
-    padding: 6rem 2rem 8rem;
+    padding: 2rem;
     position: relative;
   }
 
@@ -123,8 +123,7 @@ const recentPosts = allBlogPosts
 
 
   .featured-section,
-  .other-projects {
-    margin-bottom: 4rem;
+  .other-events {
   }
 
   .section-title {
@@ -135,7 +134,7 @@ const recentPosts = allBlogPosts
     color: var(--color-primary);
   }
 
-  .projects-grid {
+  .events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.5rem;
@@ -147,11 +146,11 @@ const recentPosts = allBlogPosts
 
   @media (max-width: 768px) {
 
-    .projects-page {
+    .events-page {
       padding-top: calc(var(--nav-height) + 1rem);
     }
 
-    .projects-grid,
+    .events-grid,
     .featured-grid {
       grid-template-columns: 1fr;
     }

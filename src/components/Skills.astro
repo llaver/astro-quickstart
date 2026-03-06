@@ -1,30 +1,28 @@
 ---
 // Skills/Tech Stack section
 import { getCollection } from 'astro:content';
-import ProjectCard from '../components/ProjectCard.astro';
+import EventCard from '../components/EventCard.astro';
 
-const allProjects = await getCollection('projects');
-const featuredProjects = allProjects.filter(p => p.data.featured);
+const allEvents = await getCollection('events');
+const featuredEvents = allEvents.filter(e => e.data.featured);
 ---
 
 <section class="skills">
   <div class="container">
-    <h2 class="section-title">Events</h2>
-    <p class="section-subtitle">Upcoming DMT Events</p>
-
-    {featuredProjects.length > 0 && (
+    {featuredEvents.length > 0 && (
         <section class="featured-section">
           <h2 class="section-title">Upcoming Events</h2>
-          <div class="projects-grid featured-grid">
-            {featuredProjects.map((project) => (
-              <ProjectCard
-                title={project.data.title}
-                description={project.data.description}
-                image={project.data.image}
-                link={project.data.link}
-                github={project.data.github}
-                tags={project.data.tags}
+          <div class="events-grid featured-grid">
+            {featuredEvents.map((event) => (
+              <EventCard
+                title={event.data.title}
+                description={event.data.description}
+                image={event.data.image}
+                dates={event.data.dates}
+                links={event.data.links}
+                tags={event.data.tags}
                 featured={true}
+                slug={event.id}
               />
             ))}
           </div>
@@ -35,7 +33,7 @@ const featuredProjects = allProjects.filter(p => p.data.featured);
 
 <style>
   .skills {
-    padding: 6rem 2rem;
+    padding: 2rem;
     position: relative;
   }
 
@@ -148,8 +146,7 @@ const featuredProjects = allProjects.filter(p => p.data.featured);
 
 
   .featured-section,
-  .other-projects {
-    margin-bottom: 4rem;
+  .other-events {
   }
 
   .section-title {
@@ -160,7 +157,7 @@ const featuredProjects = allProjects.filter(p => p.data.featured);
     color: var(--color-primary);
   }
 
-  .projects-grid {
+  .events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 1.5rem;
@@ -180,11 +177,11 @@ const featuredProjects = allProjects.filter(p => p.data.featured);
     }
 
 
-    .projects-page {
+    .events-page {
       padding-top: calc(var(--nav-height) + 1rem);
     }
 
-    .projects-grid,
+    .events-grid,
     .featured-grid {
       grid-template-columns: 1fr;
     }

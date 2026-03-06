@@ -1,0 +1,294 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  image?: string | undefined;
+  dates?: Date[] | undefined;
+  links?: { label: string; url: string }[] | undefined;
+  tags?: string[] | undefined;
+  featured?: boolean | undefined;
+  slug: string;
+}
+
+const base = import.meta.env.BASE_URL;
+const { title, description, image, dates, links, tags, featured, slug } = Astro.props;
+const imageSrc = image?.startsWith('/') ? `${base}${image.slice(1)}` : image;
+
+const formattedDates = dates?.map((date) => date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}));
+---
+
+<article class="event-card" class:list={{ featured }} onclick=`window.location.href='${base}events/${slug}';`>
+    <div class="event-card-content-container">
+      <div class="event-card-content">
+        {featured && <span class="featured-badge">Featured</span>}
+        {image && (
+          <div class="event-image">
+            <img src={imageSrc} alt={title} loading="lazy" />
+          </div>
+        )}
+        <h3 class="event-title">{title}</h3>
+        {formattedDates && formattedDates.length > 0 && (
+          <div class="event-dates">
+            {formattedDates && formattedDates[0] && (
+              <time class="event-date">
+                {formattedDates[0]}
+              </time>
+            )}
+            {formattedDates && formattedDates[1] && (
+              <time class="event-date">
+                {" - "}{formattedDates[1]}
+              </time>
+            )}
+          </div>
+        )}
+        <p class="event-description">{description}</p>
+        {tags && tags.length > 0 && (
+          <div class="event-tags">
+            {tags.map((tag) => (
+              <span class="tag">{tag}</span>
+            ))}
+          </div>
+        )}
+        <div class="event-links">
+          {links && links[0] && (
+            <a href={links[0].url}  class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              {links[0].label}
+            </a>
+          )}
+          {links && links[1] && (
+            <a href={links[1].url}  class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <line x1="10" y1="14" x2="21" y2="3"></line>
+              </svg>
+              {links[1].label}
+            </a>
+          )}
+        </div>
+        <span class="read-more">
+          Event Details
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </span>
+      </div>
+    </div>
+</article>
+
+<style>
+  .event-card {
+    position: relative;
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: 1rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .event-card-content-container {
+    position: relative;
+    padding: 1.5rem;
+    height: 100%;
+  }
+
+  .event-card.featured {
+    border-color: var(--color-accent-purple);
+  }
+
+  .event-card:hover {
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 30px rgba(59, 130, 246, 0.15);
+  }
+
+  .event-card-link {
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .event-card-content {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .featured-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent-purple));
+    border-radius: 0.25rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem;
+    width: fit-content;
+  }
+
+  .event-image {
+    width: 100%;
+    aspect-ratio: 17 / 9;
+    margin-bottom: 1.25rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background: var(--color-bg-darker);
+  }
+
+  .event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+  }
+
+  .event-card:hover .event-image img {
+    transform: scale(1.05);
+  }
+
+  .event-title {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+    transition: color 0.2s ease;
+  }
+
+  .event-card:hover .event-title {
+    color: var(--color-primary);
+  }
+
+  .event-description {
+    color: var(--color-text-dim);
+    line-height: 1.6;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .event-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .tag {
+    padding: 0.25rem 0.625rem;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--color-text-dim);
+  }
+
+  .event-nav {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .event-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    margin-bottom: 1.25rem;
+  }
+
+  .event-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-primary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .event-link:hover {
+    color: var(--color-accent-cyan);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem .75rem;
+    font-size: .85rem;
+    font-weight: 600;
+    font-family: var(--font-body);
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    margin-right: 1rem;
+  }
+
+  .btn-primary {
+    background: var(--color-accent-blue);
+    color: white;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+  }
+
+  .btn-primary:hover {
+    background: var(--color-primary);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.5);
+  }
+
+  .btn-primary svg {
+    transition: transform 0.2s ease;
+  }
+
+  .btn-primary:hover svg {
+    transform: translateX(4px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: var(--color-primary);
+  }
+
+  .read-more {
+    display: inline-flex;
+    align-items: center;
+    justify-content: end;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    margin-top: auto;
+
+    transition: transform 0.2s ease;
+  }
+
+  .read-more svg {
+    transition: transform 0.2s ease;
+  }
+
+  .event-card:hover .read-more svg {
+    transform: translateX(4px);
+  }
+
+  .event-card:hover .read-more {
+    transform: scale(1.125) translateX(-30px);
+    transition: transform 0.2s ease;
+  }
+</style>

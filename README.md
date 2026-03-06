@@ -7,14 +7,14 @@ A dark-themed Astro portfolio/blog template with Three.js particles and modern a
 [![Three.js](https://img.shields.io/badge/Three.js-0.160-blue)](https://threejs.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-**[Live Demo](https://kpab.github.io/astro-darkness)**
+**[Live Demo](https://dimensional-mayan-tribe.netlify.app)**
 
 ## Features
 
 - **Dark Theme** - Professional dark color palette with blue/purple accents
 - **Three.js Particles** - 5000 particle system with animated 3D effects
 - **Blog System** - Full-featured blog with Content Collections
-- **Portfolio** - Project showcase with featured projects
+- **Events** - Event showcase with featured upcoming and past events
 - **Responsive** - Mobile-first design with floating navbar
 - **Animations** - Smooth transitions and hover effects
 - **TypeScript** - Type-safe development
@@ -23,8 +23,8 @@ A dark-themed Astro portfolio/blog template with Three.js particles and modern a
 
 ```bash
 # Clone this template
-git clone https://github.com/kpab/astro-darkness.git
-cd astro-darkness
+git clone https://github.com/llaver/astro-quickstart.git
+cd astro-quickstart
 
 # Install dependencies
 npm install
@@ -53,16 +53,16 @@ tags: ['astro', 'three.js']
 Your content here...
 ```
 
-### Projects
+### Events
 
-Create markdown files in `src/content/projects/`:
+Create markdown files in `src/content/events/`:
 
 ```markdown
 ---
-title: 'Your Project'
-description: 'Project description'
-github: 'https://github.com/...'
-tags: ['react', 'typescript']
+title: 'Event Name'
+description: 'Event description'
+links: 'https://github.com/...'
+tags: ['3 days', 'Open Air']
 featured: true
 ---
 ```
@@ -86,7 +86,7 @@ Edit CSS variables in `src/styles/global.css`:
 ```
 src/
 ├── components/    # Reusable components
-├── content/       # Blog posts & projects (Markdown)
+├── content/       # Blog posts & Events (Markdown)
 ├── layouts/       # Page layouts
 ├── pages/         # Routes
 └── styles/        # Global styles
@@ -105,4 +105,4 @@ MIT - see [LICENSE](LICENSE)
 
 ---
 
-Made by [kpab](https://github.com/kpab)
+Made by [Signal](https://www.instagram.com/signalhtx/)
