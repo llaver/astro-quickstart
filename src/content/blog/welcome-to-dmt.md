@@ -1,32 +1,35 @@
 ---
-title: 'Welcome to the Dimensional Mayan Tribe'
+title: 'Welcome to the new Dimensional Mayan Tribe site'
 description: 'Exploring the depths of human consciousness'
-pubDate: 2025-12-15
-tags: ['events', 'party']
+pubDate: 2026-03-06
+tags: ['events', 'web', 'technology']
 ---
 
-# Welcome to the Dimensional Mayan Tribe
+# Welcome to the Dimensional Mayan Tribe blog
 
-This is the first post on our new blog
+This is the first post on our new blog on our new website!~ We have plans for more content, event information, dedicated lineups and more so stay tuned. 
 
 ## What Makes This Special?
 
-The DMT website pushes the boundaries of Psytrance event organization.
+The DMT website pushes the boundaries of what we are able to do as a Psytrance event organization.
 
-- **Event Planning** We plan events!
-- **Visual Effects** that bring the music to life
+- **Event Schedule** We now have a dedicated space for an event schedule!
+- **Content Space** A place we can bring you content outside of social media.
+- **Creative Control** 100% crew developed, we have complete creative control.
 
 ## The Technology
 
+We utilized some of the latest technology but kept it simple:
 
-We utilize some of the latest technology for our events including
-
-Speakers
-Projection Mapping
-Lasers
-LSD
+- Netlify
+- Astro
+- Three.js
 
 
 ## Motion and Beauty
 
-Every element of our events is designed to get you dancing. Or meditating. Or both at the same time. 
+Aesthetically pleasing animations give you something fun to look at while you browse.
+
+## What's Next?
+
+This is still a work in progress and will continue to be updated. Come back soon for more content. 
