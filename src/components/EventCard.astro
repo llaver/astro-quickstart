@@ -294,3 +294,9 @@ const formattedDates = dates?.map((date) => date.toLocaleDateString('en-US', {
     transition: transform 0.2s ease;
   }
 </style>
+
+<script>
+  document.querySelectorAll('a').forEach(el => el.addEventListener('click', function(event) {
+    event.stopPropagation();
+  }));
+</script>
