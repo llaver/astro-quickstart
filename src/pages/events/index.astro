@@ -5,9 +5,17 @@ import ThreeBackground from '../../components/ThreeBackground.astro';
 import Navigation from '../../components/Navigation.astro';
 import EventCard from '../../components/EventCard.astro';
 
+const sortEvents = (a: any, b: any) => {
+  if(!a.data.dates || !b.data.dates || !a.data.dates[0] || !b.data.dates[0]) {
+    return 0;
+  } else {
+    return b.data.dates[0].valueOf() - a.data.dates[0].valueOf()
+  }
+};
+
 const allEvents = await getCollection('events');
-const featuredEvents = allEvents.filter(e => e.data.featured);
-const otherEvents = allEvents.filter(e => !e.data.featured);
+const featuredEvents = allEvents.filter(e => e.data.featured).sort(sortEvents);
+const otherEvents = allEvents.filter(e => !e.data.featured).sort(sortEvents);
 ---
 
 <BaseLayout
