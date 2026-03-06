@@ -58,6 +58,8 @@ const otherEvents = allEvents.filter(e => !e.data.featured);
                 dates={event.data.dates}
                 links={event.data.links}
                 tags={event.data.tags}
+                slug={event.id}
+                featured={false}
               />
             ))}
           </div>
@@ -98,15 +100,15 @@ const otherEvents = allEvents.filter(e => !e.data.featured);
     margin: 0 auto;
   }
 
-  .featured-section,
   .other-events {
+    margin-top: 3rem;
   }
 
   .section-title {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     font-weight: 600;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     color: var(--color-primary);
   }
 

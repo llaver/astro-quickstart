@@ -4,6 +4,7 @@ const base = import.meta.env.BASE_URL;
 const currentPath = Astro.url.pathname;
 // BASE_URL
 const relativePath = currentPath.replace(base.slice(0, -1), '') || '/';
+console.log({relativePath})
 ---
 
 <nav class="nav">
@@ -59,7 +60,6 @@ const relativePath = currentPath.replace(base.slice(0, -1), '') || '/';
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--color-border);
     border-radius: 1rem;
-    animation: slideDown 0.5s ease-out;
   }
 
   .nav-container {
@@ -213,21 +213,23 @@ const relativePath = currentPath.replace(base.slice(0, -1), '') || '/';
 </style>
 
 <script>
-  // Mobile menu toggle
-  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileMenu = document.getElementById('mobile-menu');
+  document.addEventListener("astro:page-load", () => {
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-  if (mobileMenuBtn && mobileMenu) {
-    mobileMenuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-    });
-
-    // Close menu when clicking a link
-    const mobileLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('open');
       });
-    });
-  }
+
+      // Close menu when clicking a link
+      const mobileLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+        });
+      });
+    }
+  });
 </script>

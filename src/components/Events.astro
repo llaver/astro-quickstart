@@ -1,0 +1,75 @@
+---
+// Events section
+import { getCollection } from 'astro:content';
+import EventCard from '../components/EventCard.astro';
+
+const allEvents = await getCollection('events');
+const featuredEvents = allEvents.filter(e => e.data.featured);
+---
+
+<section class="events">
+  <div class="container">
+    {featuredEvents.length > 0 && (
+        <section class="featured-section">
+          <h2 class="section-title">Upcoming Events</h2>
+          <div class="events-grid featured-grid">
+            {featuredEvents.map((event) => (
+              <EventCard
+                title={event.data.title}
+                description={event.data.description}
+                image={event.data.image}
+                dates={event.data.dates}
+                links={event.data.links}
+                tags={event.data.tags}
+                featured={true}
+                slug={event.id}
+              />
+            ))}
+          </div>
+        </section>
+      )}
+  </div>
+</section>
+
+<style>
+  .events {
+    padding: 2rem;
+    position: relative;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .featured-grid {
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+  }
+
+  @media (max-width: 768px) {
+
+    .events-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .events-grid,
+    .featured-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

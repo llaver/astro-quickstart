@@ -22,6 +22,7 @@ const formattedDates = dates?.map((date) => date.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
+  timeZone: 'UTC',
 }));
 
 ---
@@ -63,7 +64,7 @@ const formattedDates = dates?.map((date) => date.toLocaleDateString('en-US', {
       <div class="event-content">
               <slot name="image">
                 {image && (
-                  <div class="event-image">
+                  <div class="event-image" onclick=`window.location.href='${imageSrc}';`>
                     <img src={imageSrc} alt={title} loading="lazy" />
                   </div>
                 )}
@@ -161,10 +162,11 @@ const formattedDates = dates?.map((date) => date.toLocaleDateString('en-US', {
 
   .event-image {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    aspect-ratio: 17 / 9;
     margin-bottom: 1.25rem;
     border-radius: 0.5rem;
     overflow: hidden;
+    cursor: pointer;
     background: var(--color-bg-darker);
   }
 
@@ -193,7 +195,7 @@ const formattedDates = dates?.map((date) => date.toLocaleDateString('en-US', {
   }
 
   .btn-primary {
-    background: var(--color-accent-blue);
+    background: var(--color-accent-purple);
     color: white;
     box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
   }

@@ -53,7 +53,7 @@ Animated gradients bring backgrounds to life:
     90deg,
     var(--color-accent-purple),
     var(--color-accent-pink),
-    var(--color-accent-blue),
+    var(--color-accent-purple),
     var(--color-accent-purple)
   );
   background-size: 200% auto;

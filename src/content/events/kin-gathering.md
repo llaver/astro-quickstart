@@ -1,7 +1,7 @@
 ---
 title: "K'IN Gathering: Kaban Awakening"
 description: "K'IN Gathering returns with a new edition inspired by the Mayan Kin 'Kaban', a symbol of movement, synchonicity, the heartbeat of the Earth, and the awakening of consciousness."
-image: '/kin-gathering.jpg'
+image: '/events/kin-gathering.jpg'
 dates: [2026-05-15, 2026-05-17]
 links: [{ label: "Tickets", url: "https://buytickets.at/dimensionalmayantribe/2090525" }, 
         { label: "Event Page", url: "https://www.facebook.com/events/1914897639400239/" }]

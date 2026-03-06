@@ -18,6 +18,7 @@ const formattedDates = dates?.map((date) => date.toLocaleDateString('en-US', {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
+  timeZone: 'UTC',
 }));
 ---
 
@@ -164,6 +165,7 @@ const formattedDates = dates?.map((date) => date.toLocaleDateString('en-US', {
     margin-bottom: 0.5rem;
     color: var(--color-text);
     transition: color 0.2s ease;
+    min-height: 3rem;
   }
 
   .event-card:hover .event-title {
@@ -237,7 +239,7 @@ const formattedDates = dates?.map((date) => date.toLocaleDateString('en-US', {
   }
 
   .btn-primary {
-    background: var(--color-accent-blue);
+    background: var(--color-accent-purple);
     color: white;
     box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
   }
