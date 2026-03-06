@@ -121,8 +121,14 @@
     torus2.rotation.x = Math.PI / 4;
     scene.add(torus2);
 
+    function isMobileDevice() {
+      return window.matchMedia("(max-width: 768px)").matches;
+    }
+
     // イベントリスナーの追加
-    document.addEventListener('mousemove', handleMouseMove);
+    if(!isMobileDevice()) {
+      document.addEventListener('mousemove', handleMouseMove);
+    }
     window.addEventListener('resize', handleResize);
 
     // アニメーションループの開始
